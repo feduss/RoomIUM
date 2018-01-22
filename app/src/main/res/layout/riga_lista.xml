@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/titolo_riga"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sono un titolo molto bello">
+
+        <TextView
+            android:id="@+id/sottotitolo_riga"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Sono un sottitolo orribile"/>
+
+    </TextView>
+
+
+
+
+</LinearLayout>
