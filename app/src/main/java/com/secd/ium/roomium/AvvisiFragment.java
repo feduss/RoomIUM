@@ -30,9 +30,10 @@ public class AvvisiFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup                  container, Bundle savedInstanceState) {
         View fragmentLayout = inflater.inflate(R.layout.fragment_avvisi, container, false);
-
+       /* ListView listView = (ListView)fragmentLayout.findViewById(R.id.lista);
         //ListView listView1 = (ListView) fragmentLayout.findViewById(R.id.lista);
-        String[] array= {"titolo", "sottotitolo", "silvio", "puzza", "poco"};
+        String[] array= {"Sospensione delle lezioni", "Pinna ha pubblicato i voti", "Inagibilità del Palazzo delle Scienze",
+                "Il ricevimento di Prof. Fenu è annullato", "Possibilità di tirocinio presso Ferrero"};
 
         List<String> array1= new ArrayList();
 
@@ -41,12 +42,12 @@ public class AvvisiFragment extends ListFragment {
         }
 
         //quello dopo r.layout è il design generico con 2 righe
-        ArrayAdapter<String> adapter = new ArrayAdapter(getActivity(), R.layout.riga_lista, R.id.titolo_riga, array1);
-        ListView listView = (ListView)fragmentLayout.findViewById(R.id.lista);
-        listView.setAdapter(adapter);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.riga_lista, array1);
 
-        return listView; //BAGASSSSAAAA DI UNA LIST VIEW DEMMERDA
-        
+        listView.setAdapter(adapter);
+*/
+        return fragmentLayout;
+
 
     }
 }

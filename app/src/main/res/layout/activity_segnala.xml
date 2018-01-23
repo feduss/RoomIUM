@@ -1,14 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
     tools:context="com.secd.ium.roomium.SegnalaActivity">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="5"/>
+        android:layout_height="50dp"
+        android:text="Segnalazione"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:background="#" />
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Aula..." />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+
+    <EditText
+        android:id="@+id/edit_problema"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/bordi_edit_text"
+        android:hint="Problema..." />
+
+    <TextView
+        android:id="@+id/counter_view"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:textAlignment="viewEnd"
+        android:paddingRight="20dp"
+
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/bordi_edit_text"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="INVIO"/>
+
+</LinearLayout>
