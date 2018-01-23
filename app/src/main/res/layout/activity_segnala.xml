@@ -15,8 +15,7 @@
         android:layout_height="50dp"
         android:text="Segnalazione"
         android:textAlignment="center"
-        android:textSize="25dp"
-        android:background="#" />
+        android:textSize="25sp"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -39,6 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:textAlignment="viewEnd"
+        android:text=""
         android:paddingRight="20dp"
 
         />
@@ -51,6 +51,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="INVIO"/>
+        android:text="INVIO"
+        android:layout_gravity="center"/>
 
 </LinearLayout>
