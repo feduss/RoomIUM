@@ -28,25 +28,33 @@ public class AvvisiFragment extends ListFragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup                  container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        //Recupero la vista principale del layout
         View fragmentLayout = inflater.inflate(R.layout.fragment_avvisi, container, false);
-       /* ListView listView = (ListView)fragmentLayout.findViewById(R.id.lista);
-        //ListView listView1 = (ListView) fragmentLayout.findViewById(R.id.lista);
+
+        //Recupero la lista dall'id dell'xml
+       ListView listView = (ListView)fragmentLayout.findViewById(android.R.id.list);
+
+        //Array di stringhe degli avvisi
         String[] array= {"Sospensione delle lezioni", "Pinna ha pubblicato i voti", "Inagibilità del Palazzo delle Scienze",
                 "Il ricevimento di Prof. Fenu è annullato", "Possibilità di tirocinio presso Ferrero"};
 
-        List<String> array1= new ArrayList();
+        //Arraylist che contiene gli elementi della listview
+        ArrayList<String> array1= new ArrayList();
 
         for(int i=0; i<array.length; i++){
             array1.add(array[i]);
         }
 
-        //quello dopo r.layout è il design generico con 2 righe
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.riga_lista, array1);
+        //Costruisco l'adapter
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.riga_lista, R.id.titolo_riga, array1);
 
-        listView.setAdapter(adapter);
-*/
-        return fragmentLayout;
+        //questa riga è problematica...da fixare! (da errore un errore del genere, nel debugger:
+        //"AppCompatTextView cannot be cast to android.view.ViewGroup"
+        //---> listView.setAdapter(adapter); <---//
+
+        return fragmentLayout; //il return è corretto, non cambiarlo
 
 
     }

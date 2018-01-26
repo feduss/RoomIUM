@@ -1,14 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
+
     tools:context="com.secd.ium.roomium.FeedbackActivity">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="4"/>
+        android:layout_height="50dp"
+        android:text="Feedback"
+        android:textAlignment="center"
+        android:textSize="25sp"/>
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        android:id="@+id/primo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Inserisci la tua email"/>
+
+    <EditText
+        android:id="@+id/secondo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Inserisci un titolo"/>
+
+    <EditText
+        android:id="@+id/terzo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Inserisci la versione dell'app e il tuodevice"/>
+
+    <EditText
+        android:id="@+id/edit_problema"
+        android:layout_width="fill_parent"
+        android:layout_height="250dp"
+        android:background="@drawable/bordi_edit_text"
+        android:hint="Problema..." />
+
+    <TextView
+        android:id="@+id/counter_view"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:textAlignment="viewEnd"
+        android:text=""
+        android:paddingRight="20dp"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+
+    <Button
+        android:id="@+id/invio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="CONFERMA"/>
+
+</LinearLayout>

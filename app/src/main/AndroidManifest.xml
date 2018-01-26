@@ -30,7 +30,13 @@
         <activity
             android:name=".AvvisiActivity"
             android:label="@string/title_activity_avvisi"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".DocenteActivity"
+            android:label="@string/title_activity_docente"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".PrenotaActivity" />
+        <activity android:name=".AvvisiDocenteActivity"></activity>
     </application>
 
 </manifest>
