@@ -11,9 +11,13 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class HomePageActivity extends AppCompatActivity {
 
@@ -28,7 +32,7 @@ public class HomePageActivity extends AppCompatActivity {
 
         invio=(Button) findViewById(R.id.login_docente); //leggo il bottone
         final EditText username = (EditText) findViewById(R.id.username);
-        EditText password = (EditText) findViewById(R.id.password);
+        final EditText password = (EditText) findViewById(R.id.password);
 
 
 
@@ -57,22 +61,36 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
 
+                if((enteredText==null || enteredText.equals("")) && (password.getText().toString()==null || password.getText().toString().equals(""))) {
+                    username.setError("Lo username non può essere vuoto!");
+                    password.setError("La password non può essere vuota!");
+                }
+                else if((enteredText==null || enteredText.equals("")) && (password.getText().toString()!=null)) {
+                    username.setError("Lo username non può essere vuoto!");
+                }
                 //se lo username è vuoto, avvio l'activity dello studente
-                if((enteredText==null) || (enteredText.equals(""))) {
-                    Intent showResult = new Intent(HomePageActivity.this, AvvisiActivity.class); //Intent che ci fa visualizzare l'activity (chi sta chiamando, l'activity da visualizzare)
-                    startActivity(showResult); //mostra a video l'activity
+                    else if((enteredText.equals("studente") && (password.getText().toString()==null || password.getText().toString().equals("")))) {
+                        Intent showResult = new Intent(HomePageActivity.this, AvvisiActivity.class); //Intent che ci fa visualizzare l'activity (chi sta chiamando, l'activity da visualizzare)
+                        startActivity(showResult); //mostra a video l'activity
 
-                }
-                else{
-                    Intent showResult = new Intent(HomePageActivity.this, DocenteActivity.class); //Intent che ci fa visualizzare l'activity (chi sta chiamando, l'activity da visualizzare)
-                    EditText inputText = (EditText) findViewById(R.id.username);
-                    setUsername(HomePageActivity.this, enteredText);
-                    enteredText=null;
+                    }
+                    else if((enteredText.equals("studente")&&(password.getText().toString()!=null))){
+                        password.setError("Se sei uno studente, c'è scritto che devi lasciare vuoto il campo della password..");
+                    }
+                        else{
+                            Intent showResult = new Intent(HomePageActivity.this, DocenteActivity.class); //Intent che ci fa visualizzare l'activity (chi sta chiamando, l'activity da visualizzare)
+                            EditText inputText = (EditText) findViewById(R.id.username);
+                            setUsername(HomePageActivity.this, enteredText);
+
+                            //dopo il login, rimuovo il testo da tutti i campi non più usati
+                            enteredText=null;
+                            username.setText(null);
+                            password.setText(null);
 
 
 
-                    startActivity(showResult);
-                }
+                            startActivity(showResult);
+                        }
 
             }
 
