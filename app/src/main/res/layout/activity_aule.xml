@@ -6,9 +6,10 @@
     android:layout_height="match_parent"
     tools:context="com.secd.ium.roomium.AuleActivity">
 
-    <TextView
+    <ListView
+        android:id="@+id/listAule"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="2"/>
+        />
 
 </android.support.constraint.ConstraintLayout>
