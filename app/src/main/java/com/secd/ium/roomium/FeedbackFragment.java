@@ -40,6 +40,9 @@ public class FeedbackFragment extends android.support.v4.app.Fragment {
         // Get the Reference of EditText
         editTextProblem = (EditText) rootView.findViewById(R.id.edit_problema);
         textViewCounterCharacters = (TextView) rootView.findViewById(R.id.counter_view);
+        primo=(EditText) rootView.findViewById(R.id.primo);
+        secondo=(EditText) rootView.findViewById(R.id.secondo);
+        terzo=(EditText) rootView.findViewById(R.id.terzo);
 
         // Attach TextWatcher to EditText
 
@@ -73,30 +76,42 @@ public class FeedbackFragment extends android.support.v4.app.Fragment {
             public void onClick(View v) {
                 //Dialog
 
-                AlertDialog.Builder builder;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    builder = new AlertDialog.Builder(getContext(), android.R.style.Theme_Material_Dialog_Alert);
-                } else {
-                    builder = new AlertDialog.Builder(getContext());
+                if(primo.getText().toString()==null || primo.getText().toString().equals("") ||
+                        secondo.getText().toString()==null || secondo.getText().toString().equals("") ||
+                        terzo.getText().toString()==null || terzo.getText().toString().equals("") ||
+                        editTextProblem.getText().toString()==null || editTextProblem.getText().toString().equals("")){
+
+                    if(primo.getText().toString()==null || primo.getText().toString().equals("")) primo.setError("Riempi il campo");
+                    if(secondo.getText().toString()==null || secondo.getText().toString().equals("")) secondo.setError("Riempi il campo");
+                    if(terzo.getText().toString()==null || terzo.getText().toString().equals("")) terzo.setError("Riempi il campo");
+                    if(editTextProblem.getText().toString()==null || editTextProblem.getText().toString().equals("")) editTextProblem.setError("Riempi il campo");
                 }
-                builder.setTitle("Invio feedback:")
-                        .setMessage("Sei sicuro di voler confermare?")
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                if(editTextProblem!=null) editTextProblem.setText("");
-                                if(primo!=null) primo.setText("");
-                                if(secondo!=null) secondo.setText("");
-                                if(terzo!=null) terzo.setText("");
-                                Toast.makeText(getActivity(), "Feedback inviato", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                // do nothing
-                            }
-                        })
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();
+                else{
+                    AlertDialog.Builder builder;
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        builder = new AlertDialog.Builder(getContext(), android.R.style.Theme_Material_Dialog_Alert);
+                    } else {
+                        builder = new AlertDialog.Builder(getContext());
+                    }
+                    builder.setTitle("Invio feedback:")
+                            .setMessage("Sei sicuro di voler confermare?")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if(editTextProblem!=null) editTextProblem.setText("");
+                                    if(primo!=null) primo.setText("");
+                                    if(secondo!=null) secondo.setText("");
+                                    if(terzo!=null) terzo.setText("");
+                                    Toast.makeText(getActivity(), "Feedback inviato", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // do nothing
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                }
             }
         });
 

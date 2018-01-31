@@ -115,28 +115,36 @@ public class SegnalaFragment extends android.support.v4.app.Fragment {
                                       public void onClick(View v) {
                                           //Dialog
 
-                                          AlertDialog.Builder builder;
-                                          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                              builder = new AlertDialog.Builder(getContext(), android.R.style.Theme_Material_Dialog_Alert);
-                                          } else {
-                                              builder = new AlertDialog.Builder(getContext());
+                                          if(aula.getText().toString()==null || aula.getText().toString().equals("") ||
+                                                  editTextProblem.getText().toString()==null || editTextProblem.getText().toString().equals("")){
+
+                                              if(aula.getText().toString()==null || aula.getText().toString().equals("")) aula.setError("Riempi il campo");
+                                              if(editTextProblem.getText().toString()==null || editTextProblem.getText().toString().equals("")) editTextProblem.setError("Riempi il campo");
                                           }
-                                          builder.setTitle("Invio segnalazione:")
-                                                  .setMessage("Sei sicuro di voler confermare?")
-                                                  .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                                      public void onClick(DialogInterface dialog, int which) {
-                                                          if(aula!=null)aula.setText("");
-                                                          if(editTextProblem!=null) editTextProblem.setText("");
-                                                          Toast.makeText(getActivity(), "Segnalazione inviata", Toast.LENGTH_SHORT).show();
-                                                      }
-                                                  })
-                                                  .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                                                      public void onClick(DialogInterface dialog, int which) {
-                                                          // do nothing
-                                                      }
-                                                  })
-                                                  .setIcon(android.R.drawable.ic_dialog_alert)
-                                                  .show();
+                                          else{
+                                              AlertDialog.Builder builder;
+                                              if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                                  builder = new AlertDialog.Builder(getContext(), android.R.style.Theme_Material_Dialog_Alert);
+                                              } else {
+                                                  builder = new AlertDialog.Builder(getContext());
+                                              }
+                                              builder.setTitle("Invio segnalazione:")
+                                                      .setMessage("Sei sicuro di voler confermare?")
+                                                      .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                                          public void onClick(DialogInterface dialog, int which) {
+                                                              if(aula!=null)aula.setText("");
+                                                              if(editTextProblem!=null) editTextProblem.setText("");
+                                                              Toast.makeText(getActivity(), "Segnalazione inviata", Toast.LENGTH_SHORT).show();
+                                                          }
+                                                      })
+                                                      .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                                          public void onClick(DialogInterface dialog, int which) {
+                                                              // do nothing
+                                                          }
+                                                      })
+                                                      .setIcon(android.R.drawable.ic_dialog_alert)
+                                                      .show();
+                                          }
                                       }
                                   });
 

@@ -36,7 +36,8 @@
             android:label="@string/title_activity_docente"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PrenotaActivity" />
-        <activity android:name=".AvvisiDocenteActivity"></activity>
+        <activity android:name=".AvvisiDocenteActivity" />
+        <activity android:name=".AlertViewActivity"></activity>
     </application>
 
 </manifest>
