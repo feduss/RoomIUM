@@ -26,8 +26,8 @@ public class CustomAdapter extends ArrayAdapter<Avviso> {
         convertView = inflater.inflate(android.R.layout.simple_list_item_2, null);
 
         TextView titolo = (TextView)convertView.findViewById(android.R.id.text1);
-        String sottotesto;
         TextView descrizione = (TextView)convertView.findViewById(android.R.id.text2);
+        String sottotesto;
 
         Avviso c = getItem(position);
 
