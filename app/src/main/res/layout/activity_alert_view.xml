@@ -1,12 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.v7.widget.AlertDialogLayout android:id="@+id/dialog"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingBottom="5dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="5dp">
 
     <TableLayout
-        android:id="@+id/table"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            android:id="@+id/table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bordi_edit_text">
+
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="Ora"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+                <TextView
+                    android:text="Corso"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+
+                <TextView
+                    android:text="Aula"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView />
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="9:00"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+                <TextView
+                    android:text="Amm"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+
+                <TextView
+                    android:text="Costa"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="9:50"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+                <TextView
+                    android:text="Amm"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+
+                <TextView
+                    android:text="Costa"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="11:00"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+                <TextView
+                    android:text="/"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+
+                <TextView
+                    android:text="/"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="11:50"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+                <TextView
+                    android:text="/"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+
+                <TextView
+                    android:text="/"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="12:40"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+                <TextView
+                    android:text="Ium"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+
+                <TextView
+                    android:text="Magna Matematica"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="15:00"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+                <TextView
+                    android:text="/"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+
+                <TextView
+                    android:text="/"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="15:50"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+                <TextView
+                    android:text="/"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+
+                <TextView
+                    android:text="/"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="17:00"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+                <TextView
+                    android:text="Ium"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+
+                <TextView
+                    android:text="Laboratorio T"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="17:50"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+                <TextView
+                    android:text="Ium"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+
+                <TextView
+                    android:text="Laboratorio T"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="19:00"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+                <TextView
+                    android:text="Ium"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+
+                <TextView
+                    android:text="Laboratorio T"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:layout_weight="1.0"/>
+
+            </TableRow>
+
+        </TableLayout>
+
+
 
 </android.support.v7.widget.AlertDialogLayout>
