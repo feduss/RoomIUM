@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
@@ -29,6 +30,22 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
+
+    <Button
+        android:id="@+id/datebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="seleziona il giorno"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <Button
+        android:id="@+id/orariconfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="mostra gli orari"/>
 
 </LinearLayout>
 
