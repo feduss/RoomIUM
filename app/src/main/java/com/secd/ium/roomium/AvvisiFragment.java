@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AvvisiFragment extends ListFragment {
+public class AvvisiFragment extends android.support.v4.app.Fragment {
 
 
     public AvvisiFragment() {
@@ -72,7 +72,6 @@ public class AvvisiFragment extends ListFragment {
         }
 
         //Costruisco l'adapter
-        //ArrayAdapter<String> adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, array1);
         CustomAdapter adapter = new CustomAdapter(getActivity(), android.R.layout.simple_list_item_2, vettore);
         listView.setAdapter(adapter);
 
@@ -83,14 +82,11 @@ public class AvvisiFragment extends ListFragment {
 
                 //Recupero dell'avviso dalla lista
                 Avviso elemento = (Avviso)listView.getItemAtPosition(position);
-                //String titolo = (String)listView.getItemAtPosition(position);
 
                 //Creazione e settaggio di un'alert dialog per la visualizzazione
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle(elemento.getTitolo());
-                //builder.setTitle(titolo);
                 builder.setMessage(elemento.getTesto() + "\n\nAutore: " + elemento.getAutore());
-                //builder.setMessage("In corso...");
                 builder.setPositiveButton("Chiudi", null);
 
                 //Visualizzazione
