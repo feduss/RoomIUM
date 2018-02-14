@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -41,6 +42,17 @@ public class PrenotaFragment extends android.support.v4.app.Fragment {
         materia.setAdapter(adapterMateria);
 
         Button data = (Button) rootView.findViewById(R.id.datebutton);
+
+        ListView lv = (ListView) rootView.findViewById(R.id.listOrari);
+
+        Model[] modelItems = new Model[3];
+        modelItems[0] = new Model("09:00-10:40", 0);
+        modelItems[1] = new Model("11:00-13:30", 0);
+        modelItems[2] = new Model("15:00-17:30", 0);
+
+        CheckboxAdapter adapterPrenota = new CheckboxAdapter(getActivity(), modelItems);
+
+        lv.setAdapter(adapterPrenota);
 
         Button conferma = (Button) rootView.findViewById(R.id.prenotaconfirm);
 

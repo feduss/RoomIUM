@@ -37,7 +37,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PrenotaActivity" />
         <activity android:name=".AvvisiDocenteActivity" />
-        <activity android:name=".AlertViewActivity"></activity>
+        <activity android:name=".AlertViewActivity" />
+        <activity android:name=".TabellaOrariActivity"></activity>
     </application>
 
 </manifest>
