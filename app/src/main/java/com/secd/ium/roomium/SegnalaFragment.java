@@ -124,7 +124,7 @@ public class SegnalaFragment extends android.support.v4.app.Fragment {
                                           else{
                                               AlertDialog.Builder builder;
                                               if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                                  builder = new AlertDialog.Builder(getContext(), android.R.style.Theme_Material_Dialog_Alert);
+                                                  builder = new AlertDialog.Builder(getContext(), android.R.style.Theme_Material_Light_Dialog_Alert);
                                               } else {
                                                   builder = new AlertDialog.Builder(getContext());
                                               }
@@ -137,7 +137,7 @@ public class SegnalaFragment extends android.support.v4.app.Fragment {
                                                               Toast.makeText(getActivity(), "Segnalazione inviata", Toast.LENGTH_SHORT).show();
                                                           }
                                                       })
-                                                      .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                                      .setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
                                                           public void onClick(DialogInterface dialog, int which) {
                                                               // do nothing
                                                           }
