@@ -36,12 +36,12 @@ public class OrariFragment extends android.support.v4.app.Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_orari, container, false);
 
-        Spinner corso = (Spinner) rootView.findViewById(R.id.spinnercorso);
+        final Spinner corso = (Spinner) rootView.findViewById(R.id.spinnercorso);
         String[] itemsCorso = new String[]{"Seleziona il Corso di Laurea","Informatica", "Informatica - Magistrale", "Matematica", "Fisica"};
         ArrayAdapter<String> adapterCorso = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, itemsCorso);
         corso.setAdapter(adapterCorso);
 
-        Spinner annoCorso = (Spinner) rootView.findViewById(R.id.spinnerannoCorso);
+        final Spinner annoCorso = (Spinner) rootView.findViewById(R.id.spinnerannoCorso);
         String[] itemsAnnoCorso = new String[]{"Seleziona l'anno di corso","1", "2", "3", "4", "5"};
         ArrayAdapter<String> adapterAnnoCorso = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, itemsAnnoCorso);
         annoCorso.setAdapter(adapterAnnoCorso);
@@ -65,8 +65,13 @@ public class OrariFragment extends android.support.v4.app.Fragment{
 
         conferma.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent showOrari = new Intent(getActivity(), TabellaOrariActivity.class);
-                startActivity(showOrari);
+                if (corso.getSelectedItemPosition() == 0 || annoCorso.getSelectedItemPosition() == 0) {
+                    if (corso.getSelectedItemPosition() == 0) ((TextView)corso.getSelectedView()).setError("Scegli un corso");
+                    if (annoCorso.getSelectedItemPosition() == 0) ((TextView)annoCorso.getSelectedView()).setError("Scegli un anno");
+                } else {
+                    Intent showOrari = new Intent(getActivity(), TabellaOrariActivity.class);
+                    startActivity(showOrari);
+                }
             }
         });
 
