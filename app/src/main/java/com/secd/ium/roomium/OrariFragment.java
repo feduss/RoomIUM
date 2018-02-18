@@ -1,21 +1,28 @@
 package com.secd.ium.roomium;
 
 
+import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -26,6 +33,7 @@ public class OrariFragment extends android.support.v4.app.Fragment{
     SharedPreferences prefs;
     final String KEY_SavedSel1 = "Saved Selection1";
     final String KEY_SavedSel2 = "Saved Selection2";
+
 
     public OrariFragment() {
         // Required empty public constructor
@@ -47,7 +55,7 @@ public class OrariFragment extends android.support.v4.app.Fragment{
         annoCorso.setAdapter(adapterAnnoCorso);
 
         //Button data = (Button) rootView.findViewById(R.id.datebutton);
-        TextView data = (TextView) rootView.findViewById(R.id.datepicker);
+        final TextView data = (TextView) rootView.findViewById(R.id.datepicker);
         Button conferma = (Button) rootView.findViewById(R.id.orariconfirm);
 
         prefs = getActivity().getPreferences(MODE_PRIVATE);
@@ -57,9 +65,23 @@ public class OrariFragment extends android.support.v4.app.Fragment{
         if (prefsInt2 != -1) annoCorso.setSelection(prefsInt2);
 
         data.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                DialogFragment newFragment = new DatePickerFragment();
-                newFragment.show(getActivity().getFragmentManager(), "datePicker");
+
+            @Override
+            public void onClick(View v){
+                Calendar calendar = Calendar.getInstance();
+                final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ITALIAN);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        Calendar newDate = Calendar.getInstance();
+                        newDate.set(year, monthOfYear, dayOfMonth);
+                        data.setText(dayOfMonth+"/"+monthOfYear+"/"+year);
+                        data.setError(null);
+
+                    }
+
+                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.show();
             }
         });
 
@@ -68,6 +90,7 @@ public class OrariFragment extends android.support.v4.app.Fragment{
                 if (corso.getSelectedItemPosition() == 0 || annoCorso.getSelectedItemPosition() == 0) {
                     if (corso.getSelectedItemPosition() == 0) ((TextView)corso.getSelectedView()).setError("Scegli un corso");
                     if (annoCorso.getSelectedItemPosition() == 0) ((TextView)annoCorso.getSelectedView()).setError("Scegli un anno");
+                    if (data.getText().toString().equals("Seleziona la data")) data.setError("Scegli una data");
                 } else {
                     Intent showOrari = new Intent(getActivity(), TabellaOrariActivity.class);
                     startActivity(showOrari);

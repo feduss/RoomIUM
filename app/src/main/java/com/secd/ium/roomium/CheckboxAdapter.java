@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 /**
@@ -23,7 +24,7 @@ public class CheckboxAdapter extends ArrayAdapter<Model> {
         this.modelItems = resource;
     }
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = ((Activity)context).getLayoutInflater();
         convertView = inflater.inflate(R.layout.layout_row, parent, false);
 
@@ -32,10 +33,23 @@ public class CheckboxAdapter extends ArrayAdapter<Model> {
 
         name.setText(modelItems[position].getName());
 
-        if(modelItems[position].getValue() == 1)
+        cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) modelItems[position].setValue(1);
+                else modelItems[position].setValue(0);
+
+            }
+        });
+
+        if(modelItems[position].getValue() == 1) {
             cb.setChecked(true);
-        else
+
+        }
+        else {
             cb.setChecked(false);
+
+        }
         return convertView;
     }
 }

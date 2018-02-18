@@ -20,4 +20,8 @@ public class Model {
     public int getValue(){
         return this.value;
     }
+
+    public void setValue(int i){
+        this.value=i;
+    }
 }
