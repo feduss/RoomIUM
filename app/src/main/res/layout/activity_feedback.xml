@@ -39,7 +39,7 @@
         android:id="@+id/terzo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Inserisci la versione dell'app e il tuodevice"/>
+        android:hint="Inserisci la versione dell'app e il tuo device"/>
 
     <EditText
         android:id="@+id/edit_problema"
