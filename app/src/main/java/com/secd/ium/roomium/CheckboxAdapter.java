@@ -42,14 +42,12 @@ public class CheckboxAdapter extends ArrayAdapter<Model> {
             }
         });
 
-        if(modelItems[position].getValue() == 1) {
+        if (modelItems[position].getValue() == 1) {
             cb.setChecked(true);
-
-        }
-        else {
+        } else {
             cb.setChecked(false);
-
         }
+
         return convertView;
     }
 }
