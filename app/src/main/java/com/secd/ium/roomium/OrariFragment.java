@@ -75,7 +75,7 @@ public class OrariFragment extends android.support.v4.app.Fragment{
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         Calendar newDate = Calendar.getInstance();
                         newDate.set(year, monthOfYear, dayOfMonth);
-                        data.setText(dayOfMonth+"/"+monthOfYear+"/"+year);
+                        data.setText(dayOfMonth+"/"+(monthOfYear+1)+"/"+year);
                         data.setError(null);
 
                     }

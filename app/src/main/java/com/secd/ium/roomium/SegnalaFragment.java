@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +45,10 @@ public class SegnalaFragment extends android.support.v4.app.Fragment {
     ImageView img1=null;
     ImageView img2=null;
     ImageView img3=null;
+
+    ImageButton remove1=null;
+    ImageButton remove2=null;
+    ImageButton remove3=null;
 
 
     public SegnalaFragment() {
@@ -107,6 +112,43 @@ public class SegnalaFragment extends android.support.v4.app.Fragment {
             }
         });
 
+        remove1= (ImageButton) rootView.findViewById(R.id.remove1);
+        remove2= (ImageButton) rootView.findViewById(R.id.remove2);
+        remove3= (ImageButton) rootView.findViewById(R.id.remove3);
+
+        remove1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                img1.setImageBitmap(null);
+                img1=null;
+                remove1.setVisibility(View.INVISIBLE);
+
+            }
+        });
+
+        remove2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                img2.setImageBitmap(null);
+                img2=null;
+                remove2.setVisibility(View.INVISIBLE);
+
+            }
+        });
+
+        remove3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                img3.setImageBitmap(null);
+                img3=null;
+                remove3.setVisibility(View.INVISIBLE);
+
+            }
+        });
+
         //tasto invio
         Button enter=(Button) rootView.findViewById(R.id.invio);
 
@@ -115,11 +157,11 @@ public class SegnalaFragment extends android.support.v4.app.Fragment {
                                       public void onClick(View v) {
                                           //Dialog
 
-                                          if(aula.getText().toString()==null || aula.getText().toString().equals("") ||
-                                                  editTextProblem.getText().toString()==null || editTextProblem.getText().toString().equals("")){
+                                          if(aula.getText().toString()==null || aula.getText().toString().trim().matches("") ||
+                                                  editTextProblem.getText().toString()==null || editTextProblem.getText().toString().trim().matches("")){
 
-                                              if(aula.getText().toString()==null || aula.getText().toString().equals("")) aula.setError("Riempi il campo");
-                                              if(editTextProblem.getText().toString()==null || editTextProblem.getText().toString().equals("")) editTextProblem.setError("Riempi il campo");
+                                              if(aula.getText().toString()==null || aula.getText().toString().trim().matches("")) aula.setError("Riempi il campo");
+                                              if(editTextProblem.getText().toString()==null || editTextProblem.getText().toString().trim().matches("")) editTextProblem.setError("Riempi il campo");
                                           }
                                           else{
                                               AlertDialog.Builder builder;
@@ -132,8 +174,8 @@ public class SegnalaFragment extends android.support.v4.app.Fragment {
                                                       .setMessage("Sei sicuro di voler confermare?")
                                                       .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                                           public void onClick(DialogInterface dialog, int which) {
-                                                              if(aula!=null)aula.setText("");
-                                                              if(editTextProblem!=null) editTextProblem.setText("");
+                                                              if(aula!=null)aula.setText(null);
+                                                              if(editTextProblem!=null) editTextProblem.setText(null);
                                                               Toast.makeText(getActivity(), "Segnalazione inviata", Toast.LENGTH_SHORT).show();
                                                           }
                                                       })
@@ -166,23 +208,25 @@ public class SegnalaFragment extends android.support.v4.app.Fragment {
             //Estrapolo la bitmap dall'immagine presa dalla camera
             Bitmap imageBitmap = (Bitmap) extras.get("data");
 
-            //Assegno la bitmap all'imageview solo è null
-
-            //WIP: aggiunge la bitmap solo alla prima imageview (devo capire perchè)
 
             if(img1==null){
                 //Estrapolo l'imageview dall'xml
                 img1= (ImageView) getView().findViewById(R.id.image1);
 
                 img1.setImageBitmap(imageBitmap);
+
+                remove1.setVisibility(View.VISIBLE);
             }
             else if(img2==null){
                     img2= (ImageView) getView().findViewById(R.id.image2);
                     img2.setImageBitmap(imageBitmap);
 
+                    remove2.setVisibility(View.VISIBLE);
+
             } else if(img3==null){
                         img3= (ImageView) getView().findViewById(R.id.image3);
                         img3.setImageBitmap(imageBitmap);
+                        remove3.setVisibility(View.VISIBLE);
             }
 
         }

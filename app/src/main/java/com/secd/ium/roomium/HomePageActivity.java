@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -24,6 +25,29 @@ public class HomePageActivity extends AppCompatActivity {
     Button invio;
     public String enteredText = null;
     public String str=null;
+
+    boolean doubleBackToExitPressedOnce = false;
+    @Override
+    public void onBackPressed() {
+        //Checking for fragment count on backstack
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack();
+        } else if (!doubleBackToExitPressedOnce) {
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this,"Premi ancora INDIETRO per uscire dall'app", Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce = false;
+                }
+            }, 2000);
+        } else {
+            super.onBackPressed();
+            return;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +96,7 @@ public class HomePageActivity extends AppCompatActivity {
                     else if((enteredText.equals("studente") && (password.getText().toString()==null || password.getText().toString().equals("")))) {
                         Intent showResult = new Intent(HomePageActivity.this, AvvisiActivity.class); //Intent che ci fa visualizzare l'activity (chi sta chiamando, l'activity da visualizzare)
                         startActivity(showResult); //mostra a video l'activity
+                        finish();
 
                     }
                     else if((enteredText.equals("studente")&&(password.getText().toString()!=null))){
@@ -90,6 +115,7 @@ public class HomePageActivity extends AppCompatActivity {
 
 
                             startActivity(showResult);
+                            finish();
                         }
 
             }

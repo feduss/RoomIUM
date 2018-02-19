@@ -42,7 +42,6 @@ public class FeedbackFragment extends android.support.v4.app.Fragment {
         textViewCounterCharacters = (TextView) rootView.findViewById(R.id.counter_view);
         primo=(EditText) rootView.findViewById(R.id.primo);
         secondo=(EditText) rootView.findViewById(R.id.secondo);
-        terzo=(EditText) rootView.findViewById(R.id.terzo);
 
         // Attach TextWatcher to EditText
 
@@ -76,15 +75,13 @@ public class FeedbackFragment extends android.support.v4.app.Fragment {
             public void onClick(View v) {
                 //Dialog
 
-                if(primo.getText().toString()==null || primo.getText().toString().equals("") ||
-                        secondo.getText().toString()==null || secondo.getText().toString().equals("") ||
-                        terzo.getText().toString()==null || terzo.getText().toString().equals("") ||
-                        editTextProblem.getText().toString()==null || editTextProblem.getText().toString().equals("")){
+                if(primo.getText().toString()==null || primo.getText().toString().trim().matches("") ||
+                        secondo.getText().toString()==null || secondo.getText().toString().trim().matches("")||
+                        editTextProblem.getText().toString()==null || editTextProblem.getText().toString().trim().matches("")){
 
-                    if(primo.getText().toString()==null || primo.getText().toString().equals("")) primo.setError("Riempi il campo");
-                    if(secondo.getText().toString()==null || secondo.getText().toString().equals("")) secondo.setError("Riempi il campo");
-                    if(terzo.getText().toString()==null || terzo.getText().toString().equals("")) terzo.setError("Riempi il campo");
-                    if(editTextProblem.getText().toString()==null || editTextProblem.getText().toString().equals("")) editTextProblem.setError("Riempi il campo");
+                    if(primo.getText().toString()==null || primo.getText().toString().trim().matches("")) primo.setError("Riempi il campo ");
+                    if(secondo.getText().toString()==null || secondo.getText().toString().trim().matches("")) secondo.setError("Riempi il campo");
+                    if(editTextProblem.getText().toString()==null || editTextProblem.getText().toString().trim().matches("")) editTextProblem.setError("Riempi il campo");
                 }
                 else{
                     AlertDialog.Builder builder;
@@ -98,9 +95,8 @@ public class FeedbackFragment extends android.support.v4.app.Fragment {
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     if(editTextProblem!=null) editTextProblem.setText("");
-                                    if(primo!=null) primo.setText("");
-                                    if(secondo!=null) secondo.setText("");
-                                    if(terzo!=null) terzo.setText("");
+                                    if(primo!=null) primo.setText(null);
+                                    if(secondo!=null) secondo.setText(null);
                                     Toast.makeText(getActivity(), "Feedback inviato", Toast.LENGTH_SHORT).show();
                                 }
                             })

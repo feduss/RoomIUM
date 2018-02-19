@@ -54,36 +54,69 @@
         android:baselineAligned="true"
         android:background="@drawable/bordi_edit_text">
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_weight="1.0"
-            android:id="@+id/image1"
-            android:background="@drawable/bordi_edit_text"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_weight="1.0"
+                android:id="@+id/image1"
+                android:background="@drawable/bordi_edit_text"/>
+            <ImageButton
+                android:id="@+id/remove1"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/x_mark_3_16"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
 
         <Space
-            android:layout_width="5dp"
+            android:layout_width="3dp"
             android:layout_height="match_parent"
             android:layout_weight="1.0"/>
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_weight="1.0"
-            android:id="@+id/image2"
-            android:background="@drawable/bordi_edit_text"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_weight="1.0"
+                android:id="@+id/image2"
+                android:background="@drawable/bordi_edit_text"/>
+
+            <ImageButton
+                android:id="@+id/remove2"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/x_mark_3_16"
+                android:visibility="invisible"/>
+        </RelativeLayout>
 
         <Space
-            android:layout_width="5dp"
+            android:layout_width="3dp"
             android:layout_height="match_parent"
             android:layout_weight="1.0"/>
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_weight="1.0"
-            android:id="@+id/image3"
-            android:background="@drawable/bordi_edit_text"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_weight="1.0"
+                android:id="@+id/image3"
+                android:background="@drawable/bordi_edit_text"/>
+
+            <ImageButton
+                android:id="@+id/remove3"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/x_mark_3_16"
+                android:visibility="invisible"/>
+        </RelativeLayout>
 
     </LinearLayout>
 

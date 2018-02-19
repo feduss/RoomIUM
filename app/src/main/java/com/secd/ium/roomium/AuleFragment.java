@@ -166,6 +166,8 @@ public class AuleFragment extends android.support.v4.app.Fragment {
     }
 }
 
+
+
 class Aula {
     private String nome;
     private String accessori;
@@ -195,3 +197,5 @@ class Aula {
         this.posti = posti;
     }
 }
+
+
