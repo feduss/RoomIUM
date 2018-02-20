@@ -1,9 +1,14 @@
 package com.secd.ium.roomium;
 
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.Image;
 import android.net.Uri;
@@ -11,6 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -39,16 +45,21 @@ public class SegnalaFragment extends android.support.v4.app.Fragment {
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
     private ImageView imageHolder;
-    private final int requestCode = 20;
+    private static final int REQUEST_CAMERA = 1;
+    private static final int SELECT_FILE = 2;
+    private int PROFILE_PIC_COUNT=0;
 
 
-    ImageView img1=null;
-    ImageView img2=null;
-    ImageView img3=null;
+    final CharSequence[] items = {"Fai una foto", "Scegli dalla galleria", "Annulla"};
 
-    ImageButton remove1=null;
-    ImageButton remove2=null;
-    ImageButton remove3=null;
+
+    ImageView img1 = null;
+    ImageView img2 = null;
+    ImageView img3 = null;
+
+    ImageButton remove1 = null;
+    ImageButton remove2 = null;
+    ImageButton remove3 = null;
 
 
     public SegnalaFragment() {
@@ -97,31 +108,67 @@ public class SegnalaFragment extends android.support.v4.app.Fragment {
         //al click sul bottone, fa le seguenti cose (per dirlo banalmente)
         capturedImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getContext());
+                    builder.setTitle("Aggiungi una foto:");
+                    builder.setItems(items, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int item) {
 
-                //L'intent descrive che cosa vogliamo fare (vedi input del costruttore)
-                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            if (items[item].equals("Fai una foto")) {
+                                PROFILE_PIC_COUNT = 1;
 
-                //se ciò che faccio è selezionare una foto, avvio l'attività della camera
-                if (takePictureIntent.resolveActivity(getContext().getPackageManager()) != null) {
-                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                                requestPermissions(
+                                        new String[]{Manifest.permission.CAMERA},
+                                        2000);
+
+                                if(ActivityCompat.checkSelfPermission(getActivity(),
+                                        Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
+
+                                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                                    startActivityForResult(intent, REQUEST_CAMERA);
+                                }
 
 
-                    //Il continuo di questo codice è nell'activity result//
+                            } else if (items[item].equals("Scegli dalla galleria")) {
+                                PROFILE_PIC_COUNT = 1;
+
+
+                                requestPermissions(
+                                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                        2000);
+
+                                if(ActivityCompat.checkSelfPermission(getActivity(),
+                                        Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+
+                                    Intent intent = new Intent(
+                                            Intent.ACTION_PICK,
+                                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+                                    startActivityForResult(intent, SELECT_FILE);
+                                }
+                            } else if (items[item].equals("Annulla")) {
+                                PROFILE_PIC_COUNT = 0;
+                                dialog.dismiss();
+                            }
+                        }
+                    });
+                    builder.show();
                 }
-            }
-        });
+            });
 
-        remove1= (ImageButton) rootView.findViewById(R.id.remove1);
-        remove2= (ImageButton) rootView.findViewById(R.id.remove2);
-        remove3= (ImageButton) rootView.findViewById(R.id.remove3);
+
+        remove1 = (ImageButton) rootView.findViewById(R.id.remove1);
+        remove2 = (ImageButton) rootView.findViewById(R.id.remove2);
+        remove3 = (ImageButton) rootView.findViewById(R.id.remove3);
 
         remove1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 img1.setImageBitmap(null);
-                img1=null;
+                img1 = null;
                 remove1.setVisibility(View.INVISIBLE);
 
             }
@@ -132,7 +179,7 @@ public class SegnalaFragment extends android.support.v4.app.Fragment {
             public void onClick(View v) {
 
                 img2.setImageBitmap(null);
-                img2=null;
+                img2 = null;
                 remove2.setVisibility(View.INVISIBLE);
 
             }
@@ -143,52 +190,60 @@ public class SegnalaFragment extends android.support.v4.app.Fragment {
             public void onClick(View v) {
 
                 img3.setImageBitmap(null);
-                img3=null;
+                img3 = null;
                 remove3.setVisibility(View.INVISIBLE);
 
             }
         });
 
         //tasto invio
-        Button enter=(Button) rootView.findViewById(R.id.invio);
+        Button enter = (Button) rootView.findViewById(R.id.invio);
 
         enter.setOnClickListener(new View.OnClickListener() {
-                                      @Override
-                                      public void onClick(View v) {
-                                          //Dialog
+            @Override
+            public void onClick(View v) {
+                //Dialog
 
-                                          if(aula.getText().toString()==null || aula.getText().toString().trim().matches("") ||
-                                                  editTextProblem.getText().toString()==null || editTextProblem.getText().toString().trim().matches("")){
+                if (aula.getText().toString() == null || aula.getText().toString().trim().matches("") ||
+                        editTextProblem.getText().toString() == null || editTextProblem.getText().toString().trim().matches("")) {
 
-                                              if(aula.getText().toString()==null || aula.getText().toString().trim().matches("")) aula.setError("Riempi il campo");
-                                              if(editTextProblem.getText().toString()==null || editTextProblem.getText().toString().trim().matches("")) editTextProblem.setError("Riempi il campo");
-                                          }
-                                          else{
-                                              AlertDialog.Builder builder;
-                                              if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                                  builder = new AlertDialog.Builder(getContext(), android.R.style.Theme_Material_Light_Dialog_Alert);
-                                              } else {
-                                                  builder = new AlertDialog.Builder(getContext());
-                                              }
-                                              builder.setTitle("Invio segnalazione:")
-                                                      .setMessage("Sei sicuro di voler confermare?")
-                                                      .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                                          public void onClick(DialogInterface dialog, int which) {
-                                                              if(aula!=null)aula.setText(null);
-                                                              if(editTextProblem!=null) editTextProblem.setText(null);
-                                                              Toast.makeText(getActivity(), "Segnalazione inviata", Toast.LENGTH_SHORT).show();
-                                                          }
-                                                      })
-                                                      .setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
-                                                          public void onClick(DialogInterface dialog, int which) {
-                                                              // do nothing
-                                                          }
-                                                      })
-                                                      .setIcon(android.R.drawable.ic_dialog_alert)
-                                                      .show();
-                                          }
-                                      }
-                                  });
+                    if (aula.getText().toString() == null || aula.getText().toString().trim().matches(""))
+                        aula.setError("Riempi il campo");
+                    if (editTextProblem.getText().toString() == null || editTextProblem.getText().toString().trim().matches(""))
+                        editTextProblem.setError("Riempi il campo");
+                } else {
+                    AlertDialog.Builder builder;
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        builder = new AlertDialog.Builder(getContext(), android.R.style.Theme_Material_Light_Dialog_Alert);
+                    } else {
+                        builder = new AlertDialog.Builder(getContext());
+                    }
+                    builder.setTitle("Invio segnalazione:")
+                            .setMessage("Sei sicuro di voler confermare?")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if (aula != null) aula.setText(null);
+                                    if (editTextProblem != null) editTextProblem.setText(null);
+                                    img1.setImageBitmap(null);
+                                    img2.setImageBitmap(null);
+                                    img3.setImageBitmap(null);
+                                    remove1.setVisibility(View.INVISIBLE);
+                                    remove2.setVisibility(View.INVISIBLE);
+                                    remove3.setVisibility(View.INVISIBLE);
+
+                                    Toast.makeText(getActivity(), "Segnalazione inviata", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // do nothing
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                }
+            }
+        });
 
         //
 
@@ -197,12 +252,10 @@ public class SegnalaFragment extends android.support.v4.app.Fragment {
     }
 
 
-
-
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
             Bundle extras = data.getExtras();
 
             //Estrapolo la bitmap dall'immagine presa dalla camera
@@ -218,20 +271,51 @@ public class SegnalaFragment extends android.support.v4.app.Fragment {
                 remove1.setVisibility(View.VISIBLE);
             }
             else if(img2==null){
-                    img2= (ImageView) getView().findViewById(R.id.image2);
-                    img2.setImageBitmap(imageBitmap);
+                img2= (ImageView) getView().findViewById(R.id.image2);
+                img2.setImageBitmap(imageBitmap);
 
-                    remove2.setVisibility(View.VISIBLE);
+                remove2.setVisibility(View.VISIBLE);
 
             } else if(img3==null){
-                        img3= (ImageView) getView().findViewById(R.id.image3);
-                        img3.setImageBitmap(imageBitmap);
-                        remove3.setVisibility(View.VISIBLE);
+                img3= (ImageView) getView().findViewById(R.id.image3);
+                img3.setImageBitmap(imageBitmap);
+                remove3.setVisibility(View.VISIBLE);
             }
 
         }
-    }
+        else {
+            if (requestCode == 2 && resultCode == Activity.RESULT_OK) {
+                if (requestCode == 2) {
+                    Uri returnUri = data.getData();
+                    Bitmap bitmapImage = null;
+                    try {
+                        bitmapImage = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), returnUri);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    if (img1 == null) {
+                        //Estrapolo l'imageview dall'xml
+                        img1 = (ImageView) getView().findViewById(R.id.image1);
+
+                        img1.setImageBitmap(bitmapImage);
+
+                        remove1.setVisibility(View.VISIBLE);
+                    } else if (img2 == null) {
+                        img2 = (ImageView) getView().findViewById(R.id.image2);
+                        img2.setImageBitmap(bitmapImage);
+
+                        remove2.setVisibility(View.VISIBLE);
+
+                    } else if (img3 == null) {
+                        img3 = (ImageView) getView().findViewById(R.id.image3);
+                        img3.setImageBitmap(bitmapImage);
+                        remove3.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+        }
 
 
+        }
 
 }
