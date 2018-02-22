@@ -170,7 +170,7 @@ public class AvvisiDocenteFragment extends android.support.v4.app.Fragment {
                                     //Inserimento del nuovo avviso nella lista
                                     nuovoAvviso.setTitolo(titolo.getText().toString());
                                     nuovoAvviso.setTesto(avviso.getText().toString());
-                                    nuovoAvviso.setAutore(getUsername(getContext())); //TODO recuperare il nome del docente
+                                    nuovoAvviso.setAutore(getUsername(getContext()));
                                     vettore.add(nuovoAvviso);
 
                                     //Spostamento del nuovo avviso in testa
