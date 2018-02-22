@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.secd.ium.roomium">
 
-    <!--Per accedere alla galleria e alla camera-->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <!-- Per accedere alla galleria e alla camera -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -37,7 +37,8 @@
         <activity android:name=".PrenotaActivity" />
         <activity android:name=".AvvisiDocenteActivity" />
         <activity android:name=".AlertViewActivity" />
-        <activity android:name=".TabellaOrariActivity"></activity>
+        <activity android:name=".TabellaOrariActivity" />
+        <activity android:name=".InfoActivity"></activity>
     </application>
 
 </manifest>

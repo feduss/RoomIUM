@@ -29,14 +29,18 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
             return new AvvisiFragment();
         } else if (position==3){
             return new SegnalaFragment();
-        } else return new FeedbackFragment();
+        } else
+            if(position==4){
+                return new FeedbackFragment();
+            }
+          else return new InfoFragment();
 
     }
 
     // This determines the number of tabs
     @Override
     public int getCount() {
-        return 5;
+        return 6;
     }
 
     // This determines the title for each tab
@@ -54,6 +58,8 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
                 return "Segnala";
             case 4:
                 return "Feedback";
+            case 5:
+                return "Info";
             default:
                 return null;
         }
