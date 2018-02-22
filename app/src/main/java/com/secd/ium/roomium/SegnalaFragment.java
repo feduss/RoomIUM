@@ -224,9 +224,9 @@ public class SegnalaFragment extends android.support.v4.app.Fragment {
                                 public void onClick(DialogInterface dialog, int which) {
                                     if (aula != null) aula.setText(null);
                                     if (editTextProblem != null) editTextProblem.setText(null);
-                                    img1.setImageBitmap(null);
-                                    img2.setImageBitmap(null);
-                                    img3.setImageBitmap(null);
+                                    if(img1!=null) img1.setImageBitmap(null);
+                                    if(img2!=null) img2.setImageBitmap(null);
+                                    if(img3!=null) img3.setImageBitmap(null);
                                     remove1.setVisibility(View.INVISIBLE);
                                     remove2.setVisibility(View.INVISIBLE);
                                     remove3.setVisibility(View.INVISIBLE);
